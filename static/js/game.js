@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const screenWidth = canvas.width;
 const screenHeight = canvas.height;
 
-let gameSpeed = 15, bgX = 0, score = 0, obstacles = [], frame = 0;
+let gameSpeed = 15, bgX = 0, score = 0, obstacles = [];
 
 const images = {};
 const loadImage = (key, src) =>
@@ -153,8 +153,17 @@ async function main() {
 
       if (isColliding(player.getRect(), obs.getRect())) {
         gameOver = true; 
-        alert("Game Over! Your score: " + Math.floor(score));
-        document.location.reload();
+        const finalScore = Math.floor(score);
+        fetch('/save_score', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ score: finalScore })
+        })
+        .then(res => res.json())
+        .then(() => {
+          alert("Game Over! Your score: " + finalScore);
+          window.location.href = "/";
+        })
       }
 
       if (obs.x < -100) obstacles.splice(idx, 1);
@@ -166,7 +175,6 @@ async function main() {
     if (score % 100 === 0) {
         gameSpeed += 0.5;
     }
-    frame++;
 
     if (!gameOver) {
       requestAnimationFrame(gameLoop);

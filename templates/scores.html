@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lịch sử điểm - Dino Run Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/scores.css') }}" />
+</head>
+<body>
+  <h1>Lịch sử điểm</h1>
+  <ul>
+    {% for score in scores %}
+      <li>{{ score }}</li>
+    {% endfor %}
+  </ul>
+  <a href="/">Quay lại màn hình bắt đầu</a>
+</body>
+</html>
