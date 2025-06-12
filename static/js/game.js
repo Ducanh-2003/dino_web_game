@@ -44,6 +44,13 @@ class Dino {
     this.gravity = 0.8;
   }
   update(keys) {
+    if((keys[" "] || keys["ArrowUp"]) && !this.isJumping) {
+      this.isJumping = true; this.isBowing = false;
+    } else if(keys["ArrowDown"] && !this.isJumping) {
+      this.isBowing = true;
+    } else this.isBowing = false;
+
+    this.step = (this.step + 1) % 10;
     if(this.isJumping) {
       this.y -= this.jumpSpeed * 4;
       this.jumpSpeed -= this.gravity;
@@ -60,14 +67,6 @@ class Dino {
       this.image = this.runImgs[Math.floor(this.step/5)%2];
       this.y = 280;
     }
-
-    if((keys[" "] || keys["ArrowUp"]) && !this.isJumping) {
-      this.isJumping = true; this.isBowing = false;
-    } else if(keys["ArrowDown"] && !this.isJumping) {
-      this.isBowing = true;
-    } else this.isBowing = false;
-
-    this.step = (this.step + 1) % 10;
   }
   draw() { ctx.drawImage(this.image, this.x, this.y); }
   getRect() { return {x:this.x, y:this.y, width:this.image.width, height:this.image.height}; }
@@ -100,7 +99,7 @@ class Pterosaur {
   }
   update() {
     this.x -= gameSpeed;
-    this.index = (this.index + 1) % 10;
+    this.index = (this.index + 1) % 10; 
   }
   draw() { ctx.drawImage(this.images[Math.floor(this.index/5)], this.x, this.y); }
   getRect() { return {x:this.x, y:this.y, width:this.images[0].width, height:this.images[0].height}; }
@@ -113,7 +112,7 @@ function drawBackground() {
   if(bgX <= -images.bg.width) bgX = 0;
 }
 
-function showScore() {
+function  showScore() {
   ctx.fillStyle = "black";
   ctx.font = "20px Arial";
   ctx.fillText("Score: " + Math.floor(score), 950, 30);
@@ -133,6 +132,7 @@ async function main() {
   document.addEventListener("keyup", e => keys[e.key] = false);
 
   const player = new Dino();
+  gameLoop();
 
   function gameLoop() {
     if (gameOver) return; 
@@ -181,7 +181,6 @@ async function main() {
     }
   }
 
-  gameLoop();
 }
 
 

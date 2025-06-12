@@ -1,5 +1,5 @@
 body {
-    background: #f0f4f8;
+    background: linear-gradient(135deg, #6dd5fa, #2980b9);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     margin: 0;
@@ -8,21 +8,26 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    user-select: none;
 }
 
 img {
+    background-color: #fff;
     max-width: 100px;
     margin-bottom: 30px;
     border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 10rem !important;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: 30px;
-    color: #2c3e50;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    color: #fff;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
     text-align: center;
+    letter-spacing: 2px;
 }
 
 a {
@@ -31,23 +36,23 @@ a {
 }
 
 button {
-    background-color: #3498db;
+    background-color: #fff; 
     border: none;
     padding: 15px 25px;
     border-radius: 15px;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100px;
     height: 60px;
-    color: white;
+    color: #535353;
     font-size: 28px;
 }
 
 button:hover {
-    background-color: #2980b9;
-    box-shadow: 0 6px 20px rgba(41, 128, 185, 0.6);
+    background-color: #a1dfff;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
